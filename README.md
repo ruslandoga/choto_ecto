@@ -1,21 +1,11 @@
-# ChotoEcto
-
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `choto_ecto` to your list of dependencies in `mix.exs`:
+[`:ecto`](https://github.com/elixir-ecto/ecto/tree/master) adapter for [`:choto`](https://github.com/ruslandoga/choto)
 
 ```elixir
-def deps do
-  [
-    {:choto_ecto, "~> 0.1.0"}
-  ]
+defmodule Repo do
+  use Ecto.Repo, otp_app: :clickhouse_ne_tormozit, adapter: Ecto.Adapters.Choto
 end
+
+iex> {:ok, conn} = Repo.start_link()
+iex> Repo.query!("select 1 + 1")
+[data: [[{"plus(1, 1)", :u16}]], data: [[{"plus(1, 1)", :u16}, 2]], data: []]
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/choto_ecto>.
-
